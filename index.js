@@ -3,9 +3,18 @@ const axios = require('axios');
 const fs = require('fs');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
+const { API_TOKEN } = process.env;
+
 
 module.exports.handler = async (event) => {
     try {
+        const token = event.headers['x-api-token'];
+        if (!token || token !== API_TOKEN) {
+            return {
+                statusCode: 401,
+                body: JSON.stringify({ message: "Unauthorized" })
+            };
+        }
         const EXTERNAL_URL = process.env.EXTERNAL_URL;
         const { data } = await axios.get(EXTERNAL_URL);
         const transformedData = transform(data);

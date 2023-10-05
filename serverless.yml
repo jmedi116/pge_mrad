@@ -8,6 +8,7 @@ provider:
   environment:
     BUCKET_NAME: ${self:custom.${self:custom.stage}.BUCKET_NAME}
     EXTERNAL_URL: ${self:custom.${self:custom.stage}.EXTERNAL_URL}
+    API_TOKEN: my-secret-token
 
 functions:
   getStations:
@@ -16,7 +17,11 @@ functions:
       - http:
           path: stations
           method: get
-          cors: true
+          cors: 
+            origin: '*' #not a good idea, just to keep things simple
+            headers:
+              - x-api-token
+
 
 custom:
   stage: ${opt:stage, self:provider.stage}
