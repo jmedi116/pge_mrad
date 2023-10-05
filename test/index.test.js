@@ -1,9 +1,12 @@
-// test.js
-const { transform } = require('./utils');
-const assert = require('assert');
+const Lab = require('@hapi/lab');
+const Code = require('@hapi/code');
+const { expect } = Code;
+const { describe, it } = exports.lab = Lab.script();
 
-describe('API Call', function() {
-    it('should transform the data correctly', function() {
+const { transform } = require('../utils');
+
+describe('API Call', () => {
+    it('should transform the data correctly', async () => {
         const mockData = {
             data: {
                 stations: [
@@ -12,21 +15,19 @@ describe('API Call', function() {
                         station_id: '10',
                         legacy_id: '100',
                         capacity: 10
-                        // ... other properties
                     },
                     {
                         external_id: '2',
                         station_id: '20',
                         legacy_id: '200',
                         capacity: 15
-                        // ... other properties
                     }
                 ]
             }
         };
 
         const result = transform(mockData);
-        assert.strictEqual(result.length, 1);
-        assert.strictEqual(result[0].externalId, '1');
+        expect(result).to.be.an.array().and.to.have.length(1);
+        expect(result[0].externalId).to.equal('1');
     });
 });
