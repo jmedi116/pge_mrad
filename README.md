@@ -5,10 +5,13 @@ Create a RESTful API to fetch stations data and store it as CSV in S3
 ## Installation - Local Setup
 
 To install this project, you will need to have # [Podman](https://podman.io/docs/installation) installed on your machine. Once you have Podman installed, you can build the Docker image by running the following command in the root directory of the project:
+ 
+ You will need to have AWS credentials to run this project.
+
 
 ```bash
 podman build -t pge_mrad_jmr .
-podman run -p 3000:3000 pge_mrad_jmr
+podman run -p 3000:3000 -e AWS_ACCESS_KEY_ID=<<OUR AWS ACCESS KEY>> -e AWS_SECRET_ACCESS_KEY=<<YOUR AWS SECRET KEY>>  pge_mrad_jmr
 ```
 
 ## Serverless Framework Setup
