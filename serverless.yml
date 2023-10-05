@@ -1,0 +1,32 @@
+service: lambda-pge-coding-challenge
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+  environment:
+    BUCKET_NAME: ${self:custom.${self:custom.stage}.BUCKET_NAME}
+    EXTERNAL_URL: ${self:custom.${self:custom.stage}.EXTERNAL_URL}
+
+functions:
+  getStations:
+    handler: index.handler
+    events:
+      - http:
+          path: stations
+          method: get
+          cors: true
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  qa:
+    BUCKET_NAME: jmrpgeqa
+    EXTERNAL_URL: https://gbfs.divvybikes.com/gbfs/en/station_information.json
+  prod:
+    BUCKET_NAME: jmrpgeprd
+    EXTERNAL_URL: https://gbfs.divvybikes.com/gbfs/en/station_information.json
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline

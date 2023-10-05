@@ -1,0 +1,44 @@
+{
+  "name": "pge_mrad",
+  "version": "1.0.0",
+  "description": "A sample api to pull station information",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmedi116/pge_mrad.git"
+  },
+  "keywords": [
+    "pge",
+    "stations"
+  ],
+  "author": "Jorge Medina",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmedi116/pge_mrad/issues"
+  },
+  "homepage": "https://github.com/jmedi116/pge_mrad#readme",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "json2csv": "^6.0.0-alpha.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.2.0"
+  }
+}
