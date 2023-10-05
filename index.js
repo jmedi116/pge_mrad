@@ -32,7 +32,7 @@ server.route({
             fs.writeFileSync('/tmp/data.csv', csv);
             await uploadToS3(s3, '/tmp/data.csv');
 
-            return h.response({ message: 'Data processed successfully!' }).code(200);
+            return h.response(csv).code(200);
         } catch (error) {
             console.error(error);
             return h.response({ message: 'Internal Server Error' }).code(500);

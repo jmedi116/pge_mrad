@@ -4,7 +4,8 @@
   "description": "A sample api to pull station information",
   "main": "index.js",
   "scripts": {
-    "test": "npx lab -v -t 100"
+    "test": "npx lab -v -t 100",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/jmedi116/pge_mrad#readme",
   "dependencies": {
     "@hapi/hapi": "^21.3.2",
+    "aws-sdk": "^2.1470.0",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "json2csv": "^6.0.0-alpha.2",

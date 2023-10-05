@@ -9,7 +9,12 @@ provider:
     BUCKET_NAME: ${self:custom.${self:custom.stage}.BUCKET_NAME}
     EXTERNAL_URL: ${self:custom.${self:custom.stage}.EXTERNAL_URL}
     API_TOKEN: my-secret-token #keeping things simle, this should be in KMS/SSM
-
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+      Resource: "arn:aws:s3:::${self:custom.${self:custom.stage}.BUCKET_NAME}/*"
 functions:
   getStations:
     handler: handler.hapi
