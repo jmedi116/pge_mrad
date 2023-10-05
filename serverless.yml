@@ -8,15 +8,15 @@ provider:
   environment:
     BUCKET_NAME: ${self:custom.${self:custom.stage}.BUCKET_NAME}
     EXTERNAL_URL: ${self:custom.${self:custom.stage}.EXTERNAL_URL}
-    API_TOKEN: my-secret-token
+    API_TOKEN: my-secret-token #keeping things simle, this should be in KMS/SSM
 
 functions:
   getStations:
-    handler: index.handler
+    handler: handler.hapi
     events:
       - http:
-          path: stations
-          method: get
+          path: /processStations
+          method: post
           cors: 
             origin: '*' #not a good idea, just to keep things simple
             headers:

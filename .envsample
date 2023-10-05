@@ -1,0 +1,3 @@
+EXTERNAL_URL=https://qa.example.com
+BUCKET_NAME=qa-my-bucket
+API_TOKEN=your-api-token
